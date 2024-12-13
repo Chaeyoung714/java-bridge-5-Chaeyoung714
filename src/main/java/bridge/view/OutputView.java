@@ -1,22 +1,38 @@
 package bridge.view;
 
+import bridge.dto.GameResult;
+import bridge.dto.MapDto;
 import bridge.model.Line;
 import bridge.model.Movement;
 import bridge.model.Status;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
 
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     public void printMap(List<Movement> movements) {
+        printMapStatus(movements);
+    }
+
+    public void printResult(GameResult gameResult) {
+        System.out.println("최종 게임 결과");
+        printMapStatus(gameResult.getMovements());
+        System.out.println(String.format("게임 성공 여부: %s", gameResult.getGameStatus().getExpression()));
+        System.out.println(String.format("총 시도한 횟수: %d", gameResult.getTryCount()));
+    }
+
+    private void printMapStatus(List<Movement> movements) {
+        MapDto mapDto = getMapPhrasesOf(movements);
+        System.out.println(String.format("[ %s ]", String.join(" | ", mapDto.getUpperMap())));
+        System.out.println(String.format("[ %s ]", String.join(" | ", mapDto.getLowerMap())));
+        System.out.println();
+    }
+
+    private MapDto getMapPhrasesOf(List<Movement> movements) {
         List<String> upperMap = new ArrayList<>();
         List<String> lowerMap = new ArrayList<>();
         for (Movement movement : movements) {
@@ -30,15 +46,6 @@ public class OutputView {
             upperMap.add(" ");
         }
 
-        System.out.println(String.format("[ %s ]", String.join(" | ", upperMap)));
-        System.out.println(String.format("[ %s ]", String.join(" | ", lowerMap)));
-    }
-
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printResult() {
+        return new MapDto(upperMap, lowerMap);
     }
 }

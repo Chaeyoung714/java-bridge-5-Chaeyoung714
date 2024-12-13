@@ -32,6 +32,7 @@ public class BridgeController {
             List<Movement> intermediateMap = bridgeGame.move(line, bridge.getAnswerOf(i));
             outputView.printMap(intermediateMap);
         }
-
+        GameResult gameResult = bridgeGame.calculateGameResult();
+        outputView.printResult(gameResult);
     }
 }

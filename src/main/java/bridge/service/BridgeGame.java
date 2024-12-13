@@ -37,9 +37,10 @@ public class BridgeGame {
 
     public GameResult calculateGameResult() {
         int tryCount = movementRepository.getInitializationCount();
+        List<Movement> movements = movementRepository.findAll();
         if (movementRepository.findByMovementStatus(Status.WRONG).isPresent()) {
-            return new GameResult(GameStatus.FAIL, tryCount);
+            return new GameResult(GameStatus.FAIL, tryCount, movements);
         }
-        return new GameResult(GameStatus.SUCCESS, tryCount);
+        return new GameResult(GameStatus.SUCCESS, tryCount, movements);
     }
 }
