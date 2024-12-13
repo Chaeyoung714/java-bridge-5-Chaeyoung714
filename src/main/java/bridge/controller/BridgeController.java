@@ -13,6 +13,7 @@ public class BridgeController {
     }
 
     public void run() {
+        int bridgeLength = inputHandler.readBridgeSize();
 
     }
 }
