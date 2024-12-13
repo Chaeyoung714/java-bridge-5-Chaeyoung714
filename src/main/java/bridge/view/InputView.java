@@ -7,12 +7,12 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-    public int readBridgeSize() {
+    public String readBridgeSize() {
         //TODO : 분리
         System.out.println(System.lineSeparator() + "다리 건너기 게임을 시작합니다.\n"
                 + System.lineSeparator()
                 + "다리의 길이를 입력해주세요.");
-        return Integer.parseInt(Console.readLine());
+        return Console.readLine();
     }
 
     /**

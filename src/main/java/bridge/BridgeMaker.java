@@ -23,6 +23,7 @@ public class BridgeMaker {
         List<String> bridgeNumbers = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int randomNumber = bridgeNumberGenerator.generate();
+            System.out.println(randomNumber); //TODO debug
             Line randomLine = Line.findBySign(randomNumber);
             bridgeNumbers.add(randomLine.getExpression());
         }

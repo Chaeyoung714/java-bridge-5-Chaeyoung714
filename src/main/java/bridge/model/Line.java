@@ -24,7 +24,7 @@ public enum Line {
 
     public static Line findByExpression(String expression) {
         return Arrays.stream(Line.values())
-                .filter(l -> l.getExpression() == expression)
+                .filter(l -> l.getExpression().equals(expression))
                 .findFirst()
                 .orElseThrow(IllegalStateException::new);
     }

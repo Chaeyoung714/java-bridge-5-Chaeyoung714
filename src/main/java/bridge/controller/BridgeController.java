@@ -1,11 +1,14 @@
 package bridge.controller;
 
 import bridge.BridgeMaker;
+import bridge.dto.GameResult;
 import bridge.model.Bridge;
 import bridge.model.Line;
+import bridge.model.Movement;
 import bridge.service.BridgeGame;
 import bridge.view.InputHandler;
 import bridge.view.OutputView;
+import java.util.List;
 
 public class BridgeController {
     private final InputHandler inputHandler;
@@ -26,7 +29,8 @@ public class BridgeController {
         Bridge bridge = Bridge.from(bridgeLength, bridgeMaker.makeBridge(bridgeLength));
         for (int i = 0; i < bridgeLength; i++) { //TODO bridge.repeat로 바꾸기
             Line line = Line.findByExpression(inputHandler.readMoving());
-            bridgeGame.move(line, bridge.getAnswerOf(i));
+            List<Movement> intermediateMap = bridgeGame.move(line, bridge.getAnswerOf(i));
+            outputView.printMap(intermediateMap);
         }
 
     }
