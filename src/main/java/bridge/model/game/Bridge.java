@@ -1,22 +1,28 @@
 package bridge.model.game;
 
-import java.util.Collections;
+import bridge.exception.ExceptionMessages;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Bridge {
+    private static final int MIN_BRIDGE_LENGTH = 3;
+    private static final int MAX_BRIDGE_LENGTH = 20;
+
     private final int length;
     private final List<Line> answer;
 
     public Bridge(int length, List<Line> answer) {
-        validateLength(length);
+        validateSize(length, answer);
         this.length = length;
         this.answer = answer;
     }
 
-    private void validateLength(int length) {
-        if (length < 3 || length > 20) {
-            throw new IllegalArgumentException("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+    private void validateSize(int length, List<Line> answer) {
+        if (length < MIN_BRIDGE_LENGTH || length > MAX_BRIDGE_LENGTH) {
+            throw new IllegalArgumentException(ExceptionMessages.WRONG_BRIDGE_LENGTH.getMessage());
+        }
+        if (length != answer.size()) {
+            throw new IllegalStateException();
         }
     }
 
@@ -27,16 +33,12 @@ public class Bridge {
     }
 
 
-    public Line getAnswerOf(int index) {
-        return answer.get(index);
+    public Line getAnswerByOrder(int order) {
+        return answer.get(order);
     }
 
     public int getLength() {
         return length;
-    }
-
-    public List<Line> getAnswer() {
-        return Collections.unmodifiableList(answer);
     }
 
 }

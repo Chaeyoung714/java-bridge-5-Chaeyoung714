@@ -1,5 +1,6 @@
 package bridge.view.answer;
 
+import bridge.exception.ExceptionMessages;
 import java.util.Arrays;
 
 public enum RetryAnswer {
@@ -17,7 +18,7 @@ public enum RetryAnswer {
         return Arrays.stream(RetryAnswer.values())
                 .filter(a -> a.getInputValue().equals(inputValue))
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new IllegalArgumentException(ExceptionMessages.WRONG_RETRY_ANSWER.getMessage()));
     }
 
     private String getInputValue() {

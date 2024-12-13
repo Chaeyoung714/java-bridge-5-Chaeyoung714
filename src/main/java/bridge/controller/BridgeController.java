@@ -50,7 +50,7 @@ public class BridgeController {
             IntStream.range(0, bridge.getLength()).forEach(i -> {
                 LineAnswer line = inputHandler.readMoving();
                 List<Movement> intermediateMap = bridgeGame.move(Line.findByExpression(line.getInputValue()),
-                        bridge.getAnswerOf(i));
+                        bridge.getAnswerByOrder(i));
                 outputView.printMap(intermediateMap);
                 retryIfWrongMovement();
             });

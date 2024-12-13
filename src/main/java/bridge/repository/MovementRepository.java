@@ -9,11 +9,11 @@ import java.util.Optional;
 
 public class MovementRepository {
     private final List<Movement> movements;
-    private int deletionCount;
+    private int initializationCount;
 
     public MovementRepository() {
         this.movements = new ArrayList<>();
-        this.deletionCount = 1;
+        this.initializationCount = 1;
     }
 
     public void save(Movement movement) {
@@ -22,7 +22,7 @@ public class MovementRepository {
 
     public void deleteAll() {
         this.movements.clear();
-        this.deletionCount++;
+        this.initializationCount++;
     }
 
     public Optional<Movement> findFirstByMovementStatus(MovementStatus movementStatus) {
@@ -42,7 +42,7 @@ public class MovementRepository {
         return movements.get(movements.size() - 1);
     }
 
-    public int getDeletionCount() {
-        return deletionCount;
+    public int getInitializationCount() {
+        return initializationCount;
     }
 }

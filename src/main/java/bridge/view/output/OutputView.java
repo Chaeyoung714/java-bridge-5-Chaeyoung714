@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class OutputView {
+    private static String JOINING_DELIMITER = " | ";
 
     public void printStartLine() {
         System.out.println("다리 건너기 게임을 시작합니다." + System.lineSeparator());
@@ -28,8 +29,8 @@ public class OutputView {
 
     private void printMapStatus(List<Movement> movements) {
         MapDto mapDto = getMapPhrasesOf(movements);
-        System.out.println(String.format("[ %s ]", String.join(" | ", mapDto.getUpperMap())));
-        System.out.println(String.format("[ %s ]", String.join(" | ", mapDto.getLowerMap())));
+        System.out.println(String.format("[ %s ]", String.join(JOINING_DELIMITER, mapDto.getUpperMap())));
+        System.out.println(String.format("[ %s ]", String.join(JOINING_DELIMITER, mapDto.getLowerMap())));
     }
 
     private MapDto getMapPhrasesOf(List<Movement> movements) {

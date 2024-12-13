@@ -1,5 +1,6 @@
 package bridge.view.answer;
 
+import bridge.exception.ExceptionMessages;
 import java.util.Arrays;
 
 public enum LineAnswer {
@@ -17,7 +18,7 @@ public enum LineAnswer {
         return Arrays.stream(LineAnswer.values())
                 .filter(a -> a.getInputValue().equals(inputValue))
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new IllegalArgumentException(ExceptionMessages.WRONG_LINE_ANSWER.getMessage()));
     }
 
     public String getInputValue() {
