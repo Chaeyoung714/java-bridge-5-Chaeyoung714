@@ -4,7 +4,7 @@ import bridge.dto.GameResult;
 import bridge.model.GameStatus;
 import bridge.model.Line;
 import bridge.model.Movement;
-import bridge.model.Status;
+import bridge.model.MovementStatus;
 import bridge.repository.MovementRepository;
 import java.util.List;
 
@@ -20,25 +20,26 @@ public class BridgeGame {
 
     public List<Movement> move(Line chosenLine, Line answer) {
         if (chosenLine.equals(answer)) {
-            movementRepository.save(new Movement(chosenLine, Status.CORRECT));
+            movementRepository.save(new Movement(chosenLine, MovementStatus.CORRECT));
             return movementRepository.findAll();
         }
-        movementRepository.save(new Movement(chosenLine, Status.WRONG));
+        movementRepository.save(new Movement(chosenLine, MovementStatus.WRONG));
         return movementRepository.findAll();
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+    public boolean checkIfMovementIsWrong() {
+        //TODO : 마지막 인덱스인지도 확인
+        return movementRepository.findByMovementStatus(MovementStatus.WRONG).isPresent();
+    }
+
     public void retry() {
+        movementRepository.deleteAll();
     }
 
     public GameResult calculateGameResult() {
-        int tryCount = movementRepository.getInitializationCount();
+        int tryCount = movementRepository.getDeletionCount();
         List<Movement> movements = movementRepository.findAll();
-        if (movementRepository.findByMovementStatus(Status.WRONG).isPresent()) {
+        if (movementRepository.findByMovementStatus(MovementStatus.WRONG).isPresent()) {
             return new GameResult(GameStatus.FAIL, tryCount, movements);
         }
         return new GameResult(GameStatus.SUCCESS, tryCount, movements);

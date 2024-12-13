@@ -24,4 +24,12 @@ public class InputHandler {
             return answer;
         });
     }
+
+    public Answer readGameCommand() {
+        return RetryHandler.retryUntilSuccessAndReturn(() -> {
+            String answer = inputView.readGameCommand();
+            //TODO :  InputValidator.validate(answer);
+            return Answer.findByInputValue(answer);
+        });
+    }
 }

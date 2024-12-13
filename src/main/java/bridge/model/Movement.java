@@ -2,18 +2,18 @@ package bridge.model;
 
 public class Movement {
     private final Line line;
-    private final Status status;
+    private final MovementStatus movementStatus;
 
-    public Movement(Line line, Status status) {
+    public Movement(Line line, MovementStatus movementStatus) {
         this.line = line;
-        this.status = status;
+        this.movementStatus = movementStatus;
     }
 
     public Line getLine() {
         return line;
     }
 
-    public Status getStatus() {
-        return status;
+    public MovementStatus getStatus() {
+        return movementStatus;
     }
 }

@@ -4,14 +4,9 @@ import bridge.dto.GameResult;
 import bridge.dto.MapDto;
 import bridge.model.Line;
 import bridge.model.Movement;
-import bridge.model.Status;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- */
 public class OutputView {
 
     public void printMap(List<Movement> movements) {
@@ -19,8 +14,9 @@ public class OutputView {
     }
 
     public void printResult(GameResult gameResult) {
-        System.out.println("최종 게임 결과");
+        System.out.println(System.lineSeparator() + "최종 게임 결과");
         printMapStatus(gameResult.getMovements());
+        System.out.println();
         System.out.println(String.format("게임 성공 여부: %s", gameResult.getGameStatus().getExpression()));
         System.out.println(String.format("총 시도한 횟수: %d", gameResult.getTryCount()));
     }
@@ -29,7 +25,6 @@ public class OutputView {
         MapDto mapDto = getMapPhrasesOf(movements);
         System.out.println(String.format("[ %s ]", String.join(" | ", mapDto.getUpperMap())));
         System.out.println(String.format("[ %s ]", String.join(" | ", mapDto.getLowerMap())));
-        System.out.println();
     }
 
     private MapDto getMapPhrasesOf(List<Movement> movements) {
@@ -45,7 +40,6 @@ public class OutputView {
             lowerMap.add(movement.getStatus().getExpression());
             upperMap.add(" ");
         }
-
         return new MapDto(upperMap, lowerMap);
     }
 }

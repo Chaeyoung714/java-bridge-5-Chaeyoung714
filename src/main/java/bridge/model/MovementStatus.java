@@ -1,13 +1,13 @@
 package bridge.model;
 
-public enum Status {
+public enum MovementStatus {
     CORRECT("O"),
     WRONG("X"),
     ;
 
     private final String expression;
 
-    Status(String expression) {
+    MovementStatus(String expression) {
         this.expression = expression;
     }
 
