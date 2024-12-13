@@ -3,9 +3,9 @@ package bridge;
 import bridge.controller.BridgeController;
 import bridge.repository.MovementRepository;
 import bridge.service.BridgeGame;
-import bridge.view.InputHandler;
-import bridge.view.InputView;
-import bridge.view.OutputView;
+import bridge.view.input.InputHandler;
+import bridge.view.input.InputView;
+import bridge.view.output.OutputView;
 
 public class DependencyConfig {
     private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();

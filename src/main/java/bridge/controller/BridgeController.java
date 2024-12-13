@@ -9,10 +9,10 @@ import bridge.model.Bridge;
 import bridge.model.Line;
 import bridge.model.Movement;
 import bridge.service.BridgeGame;
-import bridge.view.LineAnswer;
-import bridge.view.RetryAnswer;
-import bridge.view.InputHandler;
-import bridge.view.OutputView;
+import bridge.view.answer.LineAnswer;
+import bridge.view.answer.RetryAnswer;
+import bridge.view.input.InputHandler;
+import bridge.view.output.OutputView;
 import java.util.List;
 
 public class BridgeController {
@@ -48,7 +48,8 @@ public class BridgeController {
         try {
             for (int i = 0; i < bridge.getLength(); i++) { //TODO bridge.repeat로 바꾸기
                 LineAnswer line = inputHandler.readMoving();
-                List<Movement> intermediateMap = bridgeGame.move(Line.findByExpression(line.getInputValue()), bridge.getAnswerOf(i));
+                List<Movement> intermediateMap = bridgeGame.move(Line.findByExpression(line.getInputValue()),
+                        bridge.getAnswerOf(i));
                 outputView.printMap(intermediateMap);
                 retryIfWrongMovement();
             }

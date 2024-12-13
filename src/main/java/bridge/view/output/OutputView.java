@@ -1,4 +1,4 @@
-package bridge.view;
+package bridge.view.output;
 
 import bridge.dto.GameResult;
 import bridge.dto.MapDto;
@@ -6,6 +6,7 @@ import bridge.model.Line;
 import bridge.model.Movement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class OutputView {
 
@@ -36,13 +37,12 @@ public class OutputView {
         List<String> lowerMap = new ArrayList<>();
         for (Movement movement : movements) {
             if (movement.getLine().equals(Line.UP)) {
-                upperMap.add(movement.getStatus().getExpression());
-                lowerMap.add(" ");
+                upperMap.add(MovementSign.findByStatusOrEmpty(Optional.of(movement.getStatus())));
+                lowerMap.add(MovementSign.findByStatusOrEmpty(Optional.empty()));
                 continue;
-                //TODO : Status에 none도 넣어야하나.
             }
-            lowerMap.add(movement.getStatus().getExpression());
-            upperMap.add(" ");
+            lowerMap.add(MovementSign.findByStatusOrEmpty(Optional.of(movement.getStatus())));
+            upperMap.add(MovementSign.findByStatusOrEmpty(Optional.empty()));
         }
         return new MapDto(upperMap, lowerMap);
     }

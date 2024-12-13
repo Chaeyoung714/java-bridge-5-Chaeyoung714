@@ -24,7 +24,7 @@ public class MovementRepository {
         this.movements.clear();
         this.deletionCount++;
     }
-    
+
     public Optional<Movement> findByMovementStatus(MovementStatus movementStatus) {
         return movements.stream()
                 .filter(m -> m.getStatus().equals(movementStatus))

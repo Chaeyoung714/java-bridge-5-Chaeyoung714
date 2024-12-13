@@ -1,26 +1,26 @@
-package bridge.view;
+package bridge.view.answer;
 
 import java.util.Arrays;
 
-public enum RetryAnswer {
-    RETRY("R"),
-    QUIT("Q"),
+public enum LineAnswer {
+    UP("U"),
+    DOWN("D"),
     ;
 
     private final String inputValue;
 
-    RetryAnswer(String inputValue) {
+    LineAnswer(String inputValue) {
         this.inputValue = inputValue;
     }
 
-    public static RetryAnswer findByInputValue(String inputValue) {
-        return Arrays.stream(RetryAnswer.values())
+    public static LineAnswer findByInputValue(String inputValue) {
+        return Arrays.stream(LineAnswer.values())
                 .filter(a -> a.getInputValue().equals(inputValue))
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);
     }
 
-    private String getInputValue() {
+    public String getInputValue() {
         return inputValue;
     }
 }

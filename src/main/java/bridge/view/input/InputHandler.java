@@ -1,6 +1,8 @@
-package bridge.view;
+package bridge.view.input;
 
 import bridge.exception.RetryHandler;
+import bridge.view.answer.LineAnswer;
+import bridge.view.answer.RetryAnswer;
 
 public class InputHandler {
     private final InputView inputView;
