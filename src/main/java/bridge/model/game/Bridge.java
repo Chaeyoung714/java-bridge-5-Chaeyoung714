@@ -11,7 +11,7 @@ public class Bridge {
     private final int length;
     private final List<Line> answer;
 
-    public Bridge(int length, List<Line> answer) {
+    private Bridge(int length, List<Line> answer) {
         validateSize(length, answer);
         this.length = length;
         this.answer = answer;
@@ -31,7 +31,6 @@ public class Bridge {
                 .map(b -> Line.findByExpression(b))
                 .collect(Collectors.toList()));
     }
-
 
     public Line getAnswerByOrder(int order) {
         return answer.get(order);

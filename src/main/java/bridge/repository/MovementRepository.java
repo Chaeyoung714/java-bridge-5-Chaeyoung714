@@ -3,7 +3,6 @@ package bridge.repository;
 import bridge.model.user.Movement;
 import bridge.model.user.MovementStatus;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,7 +31,7 @@ public class MovementRepository {
     }
 
     public List<Movement> findAll() {
-        return Collections.unmodifiableList(movements);
+        return List.copyOf(movements);
     }
 
     public Movement findByLastIndex() {
