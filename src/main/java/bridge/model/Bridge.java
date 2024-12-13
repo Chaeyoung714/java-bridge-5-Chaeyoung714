@@ -19,6 +19,10 @@ public class Bridge {
                 .collect(Collectors.toList()));
     }
 
+    public Line getAnswerOf(int index) {
+        return answer.get(index);
+    }
+
     public int getLength() {
         return length;
     }

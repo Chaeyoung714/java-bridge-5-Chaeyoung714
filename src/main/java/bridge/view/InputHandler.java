@@ -20,6 +20,14 @@ public class InputHandler {
         });
     }
 
+    public String readMoving() {
+        return RetryHandler.retryUntilSuccessAndReturn(() -> {
+            String answer = inputView.readMoving();
+           //TODO :  InputValidator.validate(answer);
+            return answer;
+        });
+    }
+
 //    public String read() {
 //        return RetryHandler.retryUntilSuccessAndReturn(() -> {
 //            String answer = inputView.read();
