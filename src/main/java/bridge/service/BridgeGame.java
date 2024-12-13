@@ -7,10 +7,8 @@ import bridge.model.Movement;
 import bridge.model.MovementStatus;
 import bridge.repository.MovementRepository;
 import java.util.List;
+import java.util.Optional;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
     private final MovementRepository movementRepository;
 
@@ -28,8 +26,8 @@ public class BridgeGame {
     }
 
     public boolean checkIfMovementIsWrong() {
-        //TODO : 마지막 인덱스인지도 확인
-        return movementRepository.findByMovementStatus(MovementStatus.WRONG).isPresent();
+        Optional<Movement> wrongMovement = movementRepository.findFirstByMovementStatus(MovementStatus.WRONG);
+        return wrongMovement.isPresent() && wrongMovement.get().equals(movementRepository.findByLastIndex());
     }
 
     public void retry() {
@@ -39,7 +37,7 @@ public class BridgeGame {
     public GameResult calculateGameResult() {
         int tryCount = movementRepository.getDeletionCount();
         List<Movement> movements = movementRepository.findAll();
-        if (movementRepository.findByMovementStatus(MovementStatus.WRONG).isPresent()) {
+        if (movementRepository.findFirstByMovementStatus(MovementStatus.WRONG).isPresent()) {
             return new GameResult(GameStatus.FAIL, tryCount, movements);
         }
         return new GameResult(GameStatus.SUCCESS, tryCount, movements);

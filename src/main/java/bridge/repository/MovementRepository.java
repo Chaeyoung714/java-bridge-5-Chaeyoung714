@@ -25,7 +25,7 @@ public class MovementRepository {
         this.deletionCount++;
     }
 
-    public Optional<Movement> findByMovementStatus(MovementStatus movementStatus) {
+    public Optional<Movement> findFirstByMovementStatus(MovementStatus movementStatus) {
         return movements.stream()
                 .filter(m -> m.getStatus().equals(movementStatus))
                 .findFirst();
@@ -33,6 +33,13 @@ public class MovementRepository {
 
     public List<Movement> findAll() {
         return Collections.unmodifiableList(movements);
+    }
+
+    public Movement findByLastIndex() {
+        if (movements.size() == 0) {
+            throw new IllegalStateException();
+        }
+        return movements.get(movements.size() - 1);
     }
 
     public int getDeletionCount() {

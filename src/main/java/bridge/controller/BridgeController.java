@@ -14,6 +14,7 @@ import bridge.view.answer.RetryAnswer;
 import bridge.view.input.InputHandler;
 import bridge.view.output.OutputView;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class BridgeController {
     private final InputHandler inputHandler;
@@ -46,13 +47,13 @@ public class BridgeController {
 
     private void doBridgeGame(Bridge bridge) {
         try {
-            for (int i = 0; i < bridge.getLength(); i++) { //TODO bridge.repeat로 바꾸기
+            IntStream.range(0, bridge.getLength()).forEach(i -> {
                 LineAnswer line = inputHandler.readMoving();
                 List<Movement> intermediateMap = bridgeGame.move(Line.findByExpression(line.getInputValue()),
                         bridge.getAnswerOf(i));
                 outputView.printMap(intermediateMap);
                 retryIfWrongMovement();
-            }
+            });
         } catch (GameRestartException e) {
             doBridgeGame(bridge);
         } catch (GameQuitException e) {
