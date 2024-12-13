@@ -1,7 +1,7 @@
 package bridge.repository;
 
-import bridge.model.Movement;
-import bridge.model.MovementStatus;
+import bridge.model.user.Movement;
+import bridge.model.user.MovementStatus;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public class MovementRepository {
     private final List<Movement> movements;
-    private int deletionCount; //TODO : 가능하면 옮기기
+    private int deletionCount;
 
     public MovementRepository() {
         this.movements = new ArrayList<>();

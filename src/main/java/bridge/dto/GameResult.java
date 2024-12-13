@@ -1,8 +1,7 @@
 package bridge.dto;
 
-import bridge.model.GameStatus;
-import bridge.model.Line;
-import bridge.model.Movement;
+import bridge.model.game.GameStatus;
+import bridge.model.user.Movement;
 import java.util.Collections;
 import java.util.List;
 

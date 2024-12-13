@@ -1,4 +1,4 @@
-package bridge.model;
+package bridge.model.user;
 
 public enum MovementStatus {
     CORRECT,

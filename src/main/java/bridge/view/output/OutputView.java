@@ -2,8 +2,8 @@ package bridge.view.output;
 
 import bridge.dto.GameResult;
 import bridge.dto.MapDto;
-import bridge.model.Line;
-import bridge.model.Movement;
+import bridge.model.game.Line;
+import bridge.model.user.Movement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

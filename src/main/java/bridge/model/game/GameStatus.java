@@ -1,4 +1,4 @@
-package bridge.model;
+package bridge.model.game;
 
 public enum GameStatus {
     SUCCESS("성공"),

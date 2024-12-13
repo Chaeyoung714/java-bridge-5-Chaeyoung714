@@ -5,7 +5,6 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
     public String readBridgeSize() {
-        //TODO : 분리
         System.out.println("다리의 길이를 입력해주세요.");
         return Console.readLine();
     }

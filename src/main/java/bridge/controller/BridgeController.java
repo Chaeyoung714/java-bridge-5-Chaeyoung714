@@ -2,12 +2,12 @@ package bridge.controller;
 
 import bridge.BridgeMaker;
 import bridge.dto.GameResult;
-import bridge.exception.GameQuitException;
-import bridge.exception.GameRestartException;
+import bridge.exception.customException.GameQuitException;
+import bridge.exception.customException.GameRestartException;
 import bridge.exception.RetryHandler;
-import bridge.model.Bridge;
-import bridge.model.Line;
-import bridge.model.Movement;
+import bridge.model.game.Bridge;
+import bridge.model.game.Line;
+import bridge.model.user.Movement;
 import bridge.service.BridgeGame;
 import bridge.view.answer.LineAnswer;
 import bridge.view.answer.RetryAnswer;

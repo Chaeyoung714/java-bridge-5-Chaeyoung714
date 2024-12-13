@@ -1,10 +1,10 @@
 package bridge.service;
 
 import bridge.dto.GameResult;
-import bridge.model.GameStatus;
-import bridge.model.Line;
-import bridge.model.Movement;
-import bridge.model.MovementStatus;
+import bridge.model.game.GameStatus;
+import bridge.model.game.Line;
+import bridge.model.user.Movement;
+import bridge.model.user.MovementStatus;
 import bridge.repository.MovementRepository;
 import java.util.List;
 import java.util.Optional;

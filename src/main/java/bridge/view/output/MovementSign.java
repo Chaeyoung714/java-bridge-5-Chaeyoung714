@@ -1,6 +1,6 @@
 package bridge.view.output;
 
-import bridge.model.MovementStatus;
+import bridge.model.user.MovementStatus;
 import java.util.Arrays;
 import java.util.Optional;
 

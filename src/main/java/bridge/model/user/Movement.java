@@ -1,4 +1,6 @@
-package bridge.model;
+package bridge.model.user;
+
+import bridge.model.game.Line;
 
 public class Movement {
     private final Line line;

@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.model.Line;
+import bridge.model.game.Line;
 import java.util.ArrayList;
 import java.util.List;
 
