@@ -5,8 +5,8 @@
 ## 1. 사용자가 다리 길이를 입력한다.
 
 1. 사용자가 다리 길이를 입력한다.
-    - [ ]  이때, 아래와 같은 경우 예외메세지를 출력하고 재입력받는다.
-        - [ ]  다리 길이로 3~20의 정수를 입력하지 않은 경우
+    - [x]  이때, 아래와 같은 경우 예외메세지를 출력하고 재입력받는다.
+        - [x]  다리 길이로 3~20의 정수를 입력하지 않은 경우
 2. 다리 길이 값을 저장한다.
 
 ## 2. 다리 길이만큼 다리를 생성한다.
@@ -25,12 +25,12 @@
     - [x]  다리를 모두 건넜으면 6. 게임 결과 출력으로 이동한다.
 2. 사용자는 이동할 칸을 입력한다.
     - [x]  이동할 때 위 칸은 대문자 U, 아래 칸은 대문자 D를 입력한다.
-    - [ ]  이때, 아래와 같은 경우 예외메세지를 출력하고 재입력받는다.
-        - [ ]  U나 D를 입력하지 않은 경우
+    - [x]  이때, 아래와 같은 경우 예외메세지를 출력하고 재입력받는다.
+        - [x]  U나 D를 입력하지 않은 경우
 3. 이때, 이동한 칸과 다리의 건널 수 있는 칸이 동일한 경우 아래와 같이 실행한다.
     - [x]  사용자의 이동 상태를 저장한다.
     - [x]  4.사용자 이동상태 출력으로 간다.
-    - [ ]  출력 후에 3-2로 돌아가 이동을 계속한다.
+    - [x]  출력 후에 3-2로 돌아가 이동을 계속한다.
 4. 이때, 이동한 칸과 다리의 건널 수 있는 칸이 다른 경우 아래와 같이 실행한다.
     - [x]  사용자의 이동 상태를 저장한다.
     - [x]  총 시도 횟수가 1 증가한다.
@@ -50,8 +50,8 @@
 ## 5. 이동에 실패했다면 사용자는 게임 재시작 여부를 입력한다.
 
 1. 사용자가 게임 재시작 여부를 입력한다.
-    - [ ]  이때, 아래와 같은 경우 예외메세지를 출력하고 재입력받는다.
-        - [ ]  R이나 Q를 입력하지 않은 경우
+    - [x]  이때, 아래와 같은 경우 예외메세지를 출력하고 재입력받는다.
+        - [x]  R이나 Q를 입력하지 않은 경우
 2. 사용자가 재시작을 선택했다면, 지금까지 저장된 이동 상태를 초기화한 후 3. 이동할 칸 입력을 다시 시작한다.
 3. 사용자가 종료를 선택했다면, 6. 게임 결과 출력으로 이동한다.
 
@@ -70,15 +70,15 @@
 
 ## 에러 처리
 
-- [ ]  사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
-- [ ]  `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.
+- [x]  사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+- [x]  `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.
 
 ## 기타
 
-- [ ]  `InputView`, `OutputView`, `BridgeGame`, `BridgeMaker`, `BridgeRandomNumberGenerator` 클래스의 요구사항을 참고하여 구현한다.
-- [ ]  `InputView` 클래스에서만 `camp.nextstep.edu.missionutils.Console` 의 `readLine()` 메서드를 이용해 사용자의 입력을 받을 수 있다.
-- [ ]  `BridgeGame` 클래스에서 `InputView`, `OutputView` 를 사용하지 않는다.
-- [ ] 패키지 이동은 InputView, OutputView, BridgeGame만 가능하다.
+- [x]  `InputView`, `OutputView`, `BridgeGame`, `BridgeMaker`, `BridgeRandomNumberGenerator` 클래스의 요구사항을 참고하여 구현한다.
+- [x]  `InputView` 클래스에서만 `camp.nextstep.edu.missionutils.Console` 의 `readLine()` 메서드를 이용해 사용자의 입력을 받을 수 있다.
+- [x]  `BridgeGame` 클래스에서 `InputView`, `OutputView` 를 사용하지 않는다.
+- [x] 패키지 이동은 InputView, OutputView, BridgeGame만 가능하다.
 
 ## 실행 결과 예시
 

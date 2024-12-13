@@ -17,19 +17,17 @@ public class InputHandler {
         });
     }
 
-    public String readMoving() {
+    public LineAnswer readMoving() {
         return RetryHandler.retryUntilSuccessAndReturn(() -> {
             String answer = inputView.readMoving();
-           //TODO :  InputValidator.validate(answer);
-            return answer;
+            return LineAnswer.findByInputValue(answer);
         });
     }
 
-    public Answer readGameCommand() {
+    public RetryAnswer readGameCommand() {
         return RetryHandler.retryUntilSuccessAndReturn(() -> {
             String answer = inputView.readGameCommand();
-            //TODO :  InputValidator.validate(answer);
-            return Answer.findByInputValue(answer);
+            return RetryAnswer.findByInputValue(answer);
         });
     }
 }

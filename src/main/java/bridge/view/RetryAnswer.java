@@ -2,22 +2,22 @@ package bridge.view;
 
 import java.util.Arrays;
 
-public enum Answer {
+public enum RetryAnswer {
     RETRY("R"),
     QUIT("Q"),
     ;
 
     private final String inputValue;
 
-    Answer(String inputValue) {
+    RetryAnswer(String inputValue) {
         this.inputValue = inputValue;
     }
 
-    public static Answer findByInputValue(String inputValue) {
-        return Arrays.stream(Answer.values())
+    public static RetryAnswer findByInputValue(String inputValue) {
+        return Arrays.stream(RetryAnswer.values())
                 .filter(a -> a.getInputValue().equals(inputValue))
                 .findFirst()
-                .orElseThrow(IllegalStateException::new);
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     private String getInputValue() {

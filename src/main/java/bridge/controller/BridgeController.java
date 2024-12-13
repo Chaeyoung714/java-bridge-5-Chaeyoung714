@@ -4,11 +4,13 @@ import bridge.BridgeMaker;
 import bridge.dto.GameResult;
 import bridge.exception.GameQuitException;
 import bridge.exception.GameRestartException;
+import bridge.exception.RetryHandler;
 import bridge.model.Bridge;
 import bridge.model.Line;
 import bridge.model.Movement;
 import bridge.service.BridgeGame;
-import bridge.view.Answer;
+import bridge.view.LineAnswer;
+import bridge.view.RetryAnswer;
 import bridge.view.InputHandler;
 import bridge.view.OutputView;
 import java.util.List;
@@ -28,18 +30,25 @@ public class BridgeController {
     }
 
     public void run() {
-        int bridgeLength = inputHandler.readBridgeSize();
-        Bridge bridge = Bridge.from(bridgeLength, bridgeMaker.makeBridge(bridgeLength));
+        outputView.printStartLine();
+        Bridge bridge = registerBridge();
         doBridgeGame(bridge);
         GameResult gameResult = bridgeGame.calculateGameResult();
         outputView.printResult(gameResult);
     }
 
+    private Bridge registerBridge() {
+        return RetryHandler.retryUntilSuccessAndReturn(() -> {
+            int bridgeLength = inputHandler.readBridgeSize();
+            return Bridge.from(bridgeLength, bridgeMaker.makeBridge(bridgeLength));
+        });
+    }
+
     private void doBridgeGame(Bridge bridge) {
         try {
             for (int i = 0; i < bridge.getLength(); i++) { //TODO bridge.repeat로 바꾸기
-                Line line = Line.findByExpression(inputHandler.readMoving());
-                List<Movement> intermediateMap = bridgeGame.move(line, bridge.getAnswerOf(i));
+                LineAnswer line = inputHandler.readMoving();
+                List<Movement> intermediateMap = bridgeGame.move(Line.findByExpression(line.getInputValue()), bridge.getAnswerOf(i));
                 outputView.printMap(intermediateMap);
                 retryIfWrongMovement();
             }
@@ -51,8 +60,8 @@ public class BridgeController {
 
     private void retryIfWrongMovement() {
         if (bridgeGame.checkIfMovementIsWrong()) {
-            Answer answer = inputHandler.readGameCommand();
-            if (answer.equals(Answer.RETRY)) {
+            RetryAnswer retryAnswer = inputHandler.readGameCommand();
+            if (retryAnswer.equals(RetryAnswer.RETRY)) {
                 bridgeGame.retry();
                 throw new GameRestartException();
             }
