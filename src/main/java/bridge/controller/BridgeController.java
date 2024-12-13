@@ -2,9 +2,10 @@ package bridge.controller;
 
 import bridge.BridgeMaker;
 import bridge.dto.GameResult;
+import bridge.handler.GameRestartHandler;
 import bridge.exception.customException.GameQuitException;
 import bridge.exception.customException.GameRestartException;
-import bridge.exception.RetryHandler;
+import bridge.handler.RetryHandler;
 import bridge.model.game.Bridge;
 import bridge.model.game.Line;
 import bridge.model.user.Movement;
@@ -46,7 +47,7 @@ public class BridgeController {
     }
 
     private void doBridgeGame(Bridge bridge) {
-        try {
+        GameRestartHandler.retryUntilSuccessOrQuit(() -> {
             IntStream.range(0, bridge.getLength()).forEach(i -> {
                 LineAnswer line = inputHandler.readMoving();
                 List<Movement> intermediateMap = bridgeGame.move(Line.findByExpression(line.getInputValue()),
@@ -54,10 +55,7 @@ public class BridgeController {
                 outputView.printMap(intermediateMap);
                 retryIfWrongMovement();
             });
-        } catch (GameRestartException e) {
-            doBridgeGame(bridge);
-        } catch (GameQuitException e) {
-        }
+        });
     }
 
     private void retryIfWrongMovement() {

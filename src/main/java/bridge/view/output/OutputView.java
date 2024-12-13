@@ -38,12 +38,12 @@ public class OutputView {
         List<String> lowerMap = new ArrayList<>();
         for (Movement movement : movements) {
             if (movement.getLine().equals(Line.UP)) {
-                upperMap.add(MovementSign.findByStatusOrEmpty(Optional.of(movement.getStatus())));
-                lowerMap.add(MovementSign.findByStatusOrEmpty(Optional.empty()));
+                upperMap.add(MovementStatusSign.findByStatusOrEmpty(Optional.of(movement.getStatus())));
+                lowerMap.add(MovementStatusSign.findByStatusOrEmpty(Optional.empty()));
                 continue;
             }
-            lowerMap.add(MovementSign.findByStatusOrEmpty(Optional.of(movement.getStatus())));
-            upperMap.add(MovementSign.findByStatusOrEmpty(Optional.empty()));
+            lowerMap.add(MovementStatusSign.findByStatusOrEmpty(Optional.of(movement.getStatus())));
+            upperMap.add(MovementStatusSign.findByStatusOrEmpty(Optional.empty()));
         }
         return new MapDto(upperMap, lowerMap);
     }

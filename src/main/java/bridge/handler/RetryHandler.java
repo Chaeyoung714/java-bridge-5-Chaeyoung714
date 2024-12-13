@@ -1,19 +1,8 @@
-package bridge.exception;
+package bridge.handler;
 
 import java.util.function.Supplier;
 
 public class RetryHandler {
-
-    public static void retryUntilSuccess(Runnable task) {
-        while (true) {
-            try {
-                task.run();
-                return;
-            } catch (IllegalArgumentException e) {
-                ErrorHandler.handleUserError(e);
-            }
-        }
-    }
 
     public static <T> T retryUntilSuccessAndReturn(Supplier<T> inputSupplier) {
         while (true) {

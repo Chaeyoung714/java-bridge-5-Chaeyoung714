@@ -4,7 +4,7 @@ import bridge.model.user.MovementStatus;
 import java.util.Arrays;
 import java.util.Optional;
 
-public enum MovementSign {
+public enum MovementStatusSign {
     CORRECT("O", MovementStatus.CORRECT),
     WRONG("X", MovementStatus.WRONG),
     NONE(" ", null),
@@ -13,7 +13,7 @@ public enum MovementSign {
     private final String sign;
     private final MovementStatus movementStatus;
 
-    MovementSign(String sign, MovementStatus movementStatus) {
+    MovementStatusSign(String sign, MovementStatus movementStatus) {
         this.sign = sign;
         this.movementStatus = movementStatus;
     }
@@ -22,7 +22,7 @@ public enum MovementSign {
         if (status.isEmpty()) {
             return NONE.getSign();
         }
-        return Arrays.stream(MovementSign.values())
+        return Arrays.stream(MovementStatusSign.values())
                 .filter(m -> !m.equals(NONE))
                 .filter(m -> m.getMovementStatus().equals(status.get()))
                 .map(m -> m.getSign())
